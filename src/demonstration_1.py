@@ -20,6 +20,58 @@ Output: -1
 Explanation:
 There is no index that satisfies the conditions in the problem statement.
 """
-def pivot_index(nums):
-    # Your code here
+# def get_left_sum(nums, index):
+#     if index == 0:
+#         return 0
+#     return sum(nums[0:index])
 
+# def get_right_sum(nums, index):
+#     if index == len(nums) - 1:
+#         return 0
+#     return sum(nums[index+1:])
+
+# def pivot_index(nums: List[int]) -> int:
+#     # Your code here
+#     # 1. for each number, we'll go ahead and sum up everything to its left
+#     # and everything to its right
+#     # check if those sums are equal
+#     # as soon as we find such a number, we'll return it
+#     # O(n^2)
+#     for i in range(len(nums)): # O(n)
+#         # get the left sum
+#         # these two sum steps have us touch every other list element
+#         # for j in range(len(nums))
+#         # O(n)
+#         left_sum = get_left_sum(nums, i) # O(n/2)
+#         # get the right sum
+#         right_sum = get_right_sum(nums, i) # O(n/2)
+
+#         if left_sum == right_sum:
+#             return i
+
+#     return -1
+# ​
+# O(2 * n) ~ O(n)
+
+from typing import List
+
+
+def pivot_index(nums):
+    left = 0
+    right = sum(nums)  # O(n)
+
+
+​
+   for i, num in enumerate(nums):  # O(n)
+        right -= num
+    ​
+    if left == right:
+        return i
+    ​
+    left += num
+​
+    return -1
+​
+
+​
+print(pivot_index([1, 7, 3, 6, 5, 6]))
